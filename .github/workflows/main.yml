@@ -13,13 +13,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      -  name: Check if Docker secrets are set
-  run: |
-    echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}"
-    echo "DOCKER_PASSWORD is set"
-  env:
-    DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-    DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      # Step to verify that the secrets are properly set (check only the username for debugging)
+      - name: Check Secrets
+        run: echo "DOCKER_USERNAME is set"
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build and Push Docker Image
         run: |
