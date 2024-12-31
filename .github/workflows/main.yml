@@ -20,7 +20,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ DOCKER_USERNAME }}
-          password: ${{ DOCKER_PASSWORD }}
+          password: ${{DOCKER_PASSWORD }}
 
       # 3. بناء الصورة ورفعها إلى Docker Hub
       - name: Build and Push Docker Image
