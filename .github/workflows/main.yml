@@ -19,13 +19,13 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKER_USERNAME }}  # اسم المستخدم في Docker Hub
+          password: ${{ secrets.DOCKER_PASSWORD }}  # كلمة المرور أو Access Token
 
       # 3. بناء الصورة ورفعها إلى Docker Hub
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
         with:
-          context: .  # المسار إلى Dockerfile
+          context: .  # مسار Dockerfile
           push: true  # رفع الصورة بعد بنائها
           tags: ${{ secrets.DOCKER_USERNAME }}/python-app:latest  # اسم الصورة والإصدار
