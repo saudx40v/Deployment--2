@@ -13,9 +13,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Step to verify that the secrets are properly set (check only the username for debugging)
-      - name: Check Secrets
-        run: echo "DOCKER_USERNAME is set"
+      # Add this step for debugging purposes
+      - name: Check if Docker secrets are set
+        run: |
+          echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}"
+          echo "DOCKER_PASSWORD is set"
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
