@@ -8,10 +8,3 @@ WORKDIR /app
 COPY . /app
 
 # تثبيت الحزم من ملف requirements.txt (إذا كنت تستخدمه)
-RUN pip install --no-cache-dir -r requirements.txt
-
-# تحديد المنفذ الذي يستمع عليه التطبيق
-EXPOSE 5000
-
-# تشغيل التطبيق (يجب أن يكون لديك ملف بايثون مثل app.py)
-CMD ["python", "easy.py"]
